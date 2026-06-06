@@ -12,6 +12,26 @@ markdown+ editor that publishes to a static site via git.
 4. **Deploy** — connect your repo to any static host (Netlify, Cloudflare Pages, Vercel).
    They all auto-detect Astro. No config needed.
 
+### Merging upstream changes
+
+Since "Use this template" creates an independent repo (not a fork), GitHub won't
+automatically sync updates from the template. To pull in new features or fixes:
+
+```sh
+# Add the template as an upstream remote (one-time setup)
+git remote add upstream https://github.com/mattelim/btsv-template-astro.git
+
+# Pull in the latest changes
+git fetch upstream
+git merge upstream/main
+
+# Resolve any conflicts, then push
+git push origin main
+```
+
+Your custom content and changes won't be overwritten as long as you haven't modified
+the same files the template updated. Posts in `src/content/posts/` are always safe.
+
 ## Content contract
 
 Every post file lives in `src/content/posts/` and uses this frontmatter:

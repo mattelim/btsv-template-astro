@@ -11,7 +11,7 @@ const posts = defineCollection({
 		draft: z.boolean().default(false),
 		slug: z.string().optional(),
 		updated: z.date().optional()
-	})
+	}).passthrough()
 });
 
 export const collections = { posts };

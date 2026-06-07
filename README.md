@@ -23,7 +23,7 @@ git remote add upstream https://github.com/mattelim/btsv-template-astro.git
 
 # Pull in the latest changes
 git fetch upstream
-git merge upstream/main
+git merge upstream/main --allow-unrelated-histories
 
 # Resolve any conflicts, then push
 git push origin main

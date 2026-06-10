@@ -7,7 +7,11 @@ const posts = await getCollection('posts', ({ data }) =>
 	import.meta.env.PROD ? !data.draft : true
 );
 
-posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+posts.sort((a, b) => {
+	const aTime = a.data.datePublished?.getTime() ?? 0;
+	const bTime = b.data.datePublished?.getTime() ?? 0;
+	return bTime - aTime;
+});
 ---
 
 <Base title="btsv">
@@ -19,7 +23,7 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 			posts.map((post) => (
 				<PostCard
 					title={post.data.title}
-					date={post.data.date}
+					datePublished={post.data.datePublished}
 					description={post.data.description || ''}
 					slug={post.data.slug || post.id}
 					tags={post.data.tags}
